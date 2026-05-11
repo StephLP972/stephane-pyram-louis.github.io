@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio de Stéphane PYRAM-LOUIS — Étudiant BUT3 Réseaux & Télécommunications, parcours Cybersécurité — IUT de Béthune. Démarche réflexive sur les compétences RNCP, projets, SAÉ et alternance." />
+  <meta name="author" content="Stéphane PYRAM-LOUIS" />
+  <title>Stéphane PYRAM-LOUIS — Portfolio BUT3 R&T Cybersécurité</title>
+  <link rel="icon" type="image/png" href="assets/img/profile.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ==================== TOGGLE MOBILE ==================== -->
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+
+  <div class="app">
+
+    <!-- ==================== SIDEBAR ==================== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="assets/img/profile.png" alt="Stéphane PYRAM-LOUIS" class="brand-avatar" />
+        <div class="brand-info">
+          <div class="brand-name">Stéphane Pyram-Louis</div>
+          <div class="brand-role">BUT3 · Cybersécurité</div>
+        </div>
+      </div>
+
+      <div class="status">
+        <span class="status-dot"></span>
+        <span class="status-text">En alternance · SIVOM</span>
+      </div>
+
+      <nav class="nav">
+        <div class="nav-label">Portfolio</div>
+
+        <button class="nav-item active" data-target="home">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Accueil
+        </button>
+
+        <button class="nav-item" data-target="parcours">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Mon parcours
+        </button>
+
+        <button class="nav-item" data-target="competences">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Compétences RNCP
+        </button>
+
+        <button class="nav-item" data-target="projets">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Projets & SAÉ
+        </button>
+
+        <button class="nav-item" data-target="experiences">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          Expériences pro
+        </button>
+
+        <button class="nav-item" data-target="matieres">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Matières
+        </button>
+
+        <button class="nav-item" data-target="avenir">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Projet d'avenir
+        </button>
+
+        <button class="nav-item" data-target="contact">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Contact
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="social-row">
+          <a class="social-btn" href="https://www.linkedin.com/in/stéphane-pyram-louis-5a45652b5/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+          </a>
+          <a class="social-btn" href="mailto:stephane.pyramlouis972@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+          <a class="social-btn" href="assets/docs/CV_Stephane_PYRAM_LOUIS.pdf" target="_blank" rel="noopener" aria-label="CV PDF">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="main">
+
+      <!-- ===== HOME ===== -->
+      <section class="section active" id="home">
+        <div class="hero">
+          <div class="hero-greeting">
+            <span>Bonjour, je suis</span>
+          </div>
+          <h1 class="hero-name">Stéphane <span class="accent">PYRAM-LOUIS</span></h1>
+          <p class="hero-title">
+            Apprenti technicien <span class="highlight">réseaux &amp; télécoms</span>, curieux de l'intersection entre <span class="highlight">infrastructures connectées</span> et <span class="highlight">intelligence artificielle</span>.
+          </p>
+          <p class="hero-description">
+            Étudiant en BUT3 Réseaux &amp; Télécommunications, parcours Cybersécurité à l'IUT de Béthune. En alternance au SIVOM de la Communauté du Béthunois sur les systèmes urbains connectés : vidéoprotection, ponts radio, fibre optique, supervision. Ce portfolio retrace ma démarche réflexive sur trois années de formation, projets, SAÉ et expériences professionnelles.
+          </p>
+
+          <div class="hero-cta">
+            <button class="btn btn-primary" data-nav="competences">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              Compétences RNCP
+            </button>
+            <a class="btn btn-secondary" href="assets/docs/CV_Stephane_PYRAM_LOUIS.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Télécharger mon CV
+            </a>
+          </div>
+
+          <!-- Stats clés -->
+          <div class="stats-grid">
+            <div class="stat-card" style="--stat-accent: var(--accent-cyan);">
+              <div class="stat-label">Moyenne S5</div>
+              <div class="stat-value">14.27<span style="color:var(--text-muted);font-size:18px;">/20</span></div>
+              <div class="stat-meta">Rang 3 / 13 · UE51</div>
+            </div>
+            <div class="stat-card" style="--stat-accent: var(--accent-green);">
+              <div class="stat-label">SAÉ 5.01</div>
+              <div class="stat-value">19<span style="color:var(--text-muted);font-size:18px;">/20</span></div>
+              <div class="stat-meta">Solution technique</div>
+            </div>
+            <div class="stat-card" style="--stat-accent: var(--accent-violet);">
+              <div class="stat-label">Alternance</div>
+              <div class="stat-value">19.27<span style="color:var(--text-muted);font-size:18px;">/20</span></div>
+              <div class="stat-meta">SIVOM Béthunois</div>
+            </div>
+            <div class="stat-card" style="--stat-accent: var(--accent-amber);">
+              <div class="stat-label">Stage S4</div>
+              <div class="stat-value">17.66<span style="color:var(--text-muted);font-size:18px;">/20</span></div>
+              <div class="stat-meta">Vidéoprotection</div>
+            </div>
+          </div>
+
+          <!-- Progression -->
+          <div class="dashboard-grid">
+            <div class="progress-card">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
+                Progression sur 5 semestres
+              </h3>
+              <div class="semester-row">
+                <span class="semester-label">S1</span>
+                <div class="semester-bar"><div class="semester-fill" data-width="69"></div></div>
+                <span class="semester-value">13.80</span>
+              </div>
+              <div class="semester-row">
+                <span class="semester-label">S3</span>
+                <div class="semester-bar"><div class="semester-fill" data-width="71"></div></div>
+                <span class="semester-value">14.28</span>
+              </div>
+              <div class="semester-row">
+                <span class="semester-label">S4</span>
+                <div class="semester-bar"><div class="semester-fill" data-width="73"></div></div>
+                <span class="semester-value">14.55</span>
+              </div>
+              <div class="semester-row">
+                <span class="semester-label">S5</span>
+                <div class="semester-bar"><div class="semester-fill" data-width="78"></div></div>
+                <span class="semester-value">15.52</span>
+              </div>
+              <p style="margin-top: 14px; font-size: 12px; color: var(--text-muted); font-family: var(--font-mono);">
+                ↗ Progression continue · UE C1/C2 Cybersécurité &amp; UE53 Outils informatiques
+              </p>
+            </div>
+
+            <div class="progress-card">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-violet)" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                Domaines d'intérêt
+              </h3>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
+                <span class="tag cyan" style="justify-content:flex-start;width:fit-content;">🔒 Cybersécurité défensive</span>
+                <span class="tag green" style="justify-content:flex-start;width:fit-content;">🌐 Réseaux &amp; infrastructures</span>
+                <span class="tag violet" style="justify-content:flex-start;width:fit-content;">🤖 Intelligence artificielle</span>
+                <span class="tag amber" style="justify-content:flex-start;width:fit-content;">📡 Systèmes urbains connectés</span>
+                <span class="tag" style="justify-content:flex-start;width:fit-content;">🛡️ Supervision &amp; SOC</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick links / highlights -->
+          <div class="highlights">
+            <div class="highlight-card" data-nav="competences">
+              <div class="highlight-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3 class="highlight-title">5 compétences RNCP</h3>
+              <p class="highlight-desc">Analyse réflexive détaillée, AC, traces, difficultés et progression.</p>
+            </div>
+            <div class="highlight-card" data-nav="projets">
+              <div class="highlight-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <h3 class="highlight-title">SAÉ &amp; projets</h3>
+              <p class="highlight-desc">De l'initiation aux réseaux jusqu'à la sécurisation avancée d'un SI.</p>
+            </div>
+            <div class="highlight-card" data-nav="experiences">
+              <div class="highlight-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              </div>
+              <h3 class="highlight-title">Alternance terrain</h3>
+              <p class="highlight-desc">SIVOM Béthunois : ponts radio, fibre, switchs, supervision vidéo.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PARCOURS ===== -->
+      <section class="section" id="parcours">
+        <div class="section-header">
+          <div class="section-breadcrumb"><span class="accent">02</span> · Timeline</div>
+          <h1 class="section-title">Mon parcours</h1>
+          <p class="section-subtitle">Du baccalauréat NSI à l'apprentissage en systèmes urbains connectés, en passant par la formation BUT R&amp;T à Béthune.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item violet">
+            <div class="timeline-date">Septembre 2019 — Juin 2023</div>
+            <div class="timeline-card">
+              <div class="timeline-title">Baccalauréat Mathématiques &amp; NSI</div>
+              <div class="timeline-org">Lycée Joseph Gaillard · Fort-de-France, Martinique</div>
+              <p class="timeline-desc">Premiers pas dans la programmation (Python), l'algorithmique et les bases de l'informatique. Ce sont les spécialités Maths et NSI qui ont déclenché mon intérêt pour les métiers techniques de l'IT.</p>
+              <div class="timeline-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Algorithmique</span>
+                <span class="tag">Mathématiques</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Septembre 2023 — Juin 2024 · BUT1</div>
+            <div class="timeline-card">
+              <div class="timeline-title">BUT1 R&amp;T — Tronc commun</div>
+              <div class="timeline-org">IUT de Béthune · Université d'Artois</div>
+              <p class="timeline-desc">Découverte des fondamentaux : réseaux, électronique, programmation, systèmes d'exploitation, mathématiques du signal. Excellents résultats en programmation (16.83) et en initiation aux réseaux (SAÉ12 : 17.83).</p>
+              <div class="timeline-tags">
+                <span class="tag cyan">UE acquises</span>
+                <span class="tag">MOOC ANSSI</span>
+                <span class="tag">Rang 9/57</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Avril 2024 — En cours</div>
+            <div class="timeline-card">
+              <div class="timeline-title">Veilleur de nuit</div>
+              <div class="timeline-org">CROUS de Lille</div>
+              <p class="timeline-desc">Première expérience pro en parallèle des études. Surveillance des locaux, gestion d'incidents, sens des responsabilités. Job étudiant qui a renforcé mon autonomie et ma capacité à travailler dans un cadre professionnel.</p>
+              <div class="timeline-tags">
+                <span class="tag">Soft skills</span>
+                <span class="tag">Autonomie</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Septembre 2024 — Juin 2025 · BUT2</div>
+            <div class="timeline-card">
+              <div class="timeline-title">BUT2 R&amp;T — Spécialisation Cybersécurité</div>
+              <div class="timeline-org">IUT de Béthune · Université d'Artois</div>
+              <p class="timeline-desc">Choix du parcours Cybersécurité. Apprentissage du pentesting (SAÉ Cyber.04 : 18/20), de la cryptographie (TP openSSL : 18/20), des réseaux multi-sites sécurisés, et de l'automatisation. DUT validé en fin d'année.</p>
+              <div class="timeline-tags">
+                <span class="tag violet">Parcours Cyber</span>
+                <span class="tag">Pentesting</span>
+                <span class="tag">Cryptographie</span>
+                <span class="tag green">DUT validé</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item green">
+            <div class="timeline-date">Avril 2025 — Mai 2025 · Stage S4</div>
+            <div class="timeline-card">
+              <div class="timeline-title">Technicien vidéoprotection (stage)</div>
+              <div class="timeline-org">SIVOM de la Communauté du Béthunois · Verquigneul</div>
+              <p class="timeline-desc">Premier contact avec les systèmes urbains connectés. Maintenance d'équipements de vidéoprotection, interventions techniques sur site. Note finale stage : <strong>17.66/20</strong> (rapport 18, soutenance 17, entreprise 17.98).</p>
+              <div class="timeline-tags">
+                <span class="tag green">17.66 / 20</span>
+                <span class="tag">Vidéoprotection</span>
+                <span class="tag">Terrain</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item green">
+            <div class="timeline-date">Juin 2025 — Septembre 2025 · CDD</div>
+            <div class="timeline-card">
+              <div class="timeline-title">Agent technique polyvalent</div>
+              <div class="timeline-org">SIVOM de la Communauté du Béthunois</div>
+              <p class="timeline-desc">CDD de 4 mois sur des missions techniques polyvalentes. Aide à la maintenance d'équipements, travail organisationnel et physique. Période qui a confirmé mon intégration dans la structure avant le démarrage de l'apprentissage.</p>
+              <div class="timeline-tags">
+                <span class="tag">CDD 4 mois</span>
+                <span class="tag">Maintenance</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item violet">
+            <div class="timeline-date">Septembre 2025 — En cours · BUT3 en apprentissage</div>
+            <div class="timeline-card">
+              <div class="timeline-title">Apprenti technicien informatique — Systèmes urbains connectés</div>
+              <div class="timeline-org">SIVOM de la Communauté du Béthunois · BUT3 en alternance</div>
+              <p class="timeline-desc">Apprentissage en parallèle du BUT3 Cybersécurité. Configuration de ponts radio, soudure fibre, déploiement de switchs/VLAN, supervision de la vidéoprotection urbaine, VPN, MDM. <strong>Note entreprise S5 : 19.27/20</strong>. C'est cette année qui transforme la théorie en pratique terrain.</p>
+              <div class="timeline-tags">
+                <span class="tag violet">19.27 / 20</span>
+                <span class="tag">Fibre optique</span>
+                <span class="tag">Ponts radio</span>
+                <span class="tag">VLAN / Switchs</span>
+                <span class="tag">VPN</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Septembre 2026 — À venir</div>
+            <div class="timeline-card">
+              <div class="timeline-title">Poursuite d'études · Master</div>
+              <div class="timeline-org">Objectif : Master orienté cybersécurité, réseaux ou IA appliquée</div>
+              <p class="timeline-desc">Objectif d'approfondir les compétences techniques acquises, en particulier autour de l'intersection cybersécurité / IA. Recherche d'un Master qui combine technique avancée et applications opérationnelles.</p>
+              <div class="timeline-tags">
+                <span class="tag cyan">Recherche Master</span>
+                <span class="tag">09/2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== COMPETENCES RNCP ===== -->
+      <section class="section" id="competences">
+        <div class="section-header">
+          <div class="section-breadcrumb"><span class="accent">03</span> · Référentiel RNCP BUT R&amp;T Cybersécurité</div>
+          <h1 class="section-title">Compétences RNCP</h1>
+          <p class="section-subtitle">Analyse réflexive par compétence, conforme aux consignes BUT3 : niveau critique &amp; professionnel. Chaque compétence est reliée aux matières, SAÉ et expériences qui l'ont mobilisée.</p>
+        </div>
+
+        <div class="competence-filters">
+          <button class="filter-btn active" data-filter="all">Toutes</button>
+          <button class="filter-btn" data-filter="tronc">Tronc commun</button>
+          <button class="filter-btn" data-filter="cyber">Spécialité Cyber</button>
+        </div>
+
+        <div class="competence-grid" id="competenceGrid">
+          <!-- Cards générées par JS -->
+        </div>
+
+        <!-- Matrice de synthèse -->
+        <div style="margin-top: 56px;">
+          <h2 style="font-family: var(--font-display); font-size: 22px; font-weight: 700; margin-bottom: 8px;">Matrice de correspondance</h2>
+          <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 20px;">Synthèse visuelle des liens entre les ressources, les SAÉ et les compétences RNCP.</p>
+
+          <div class="matrix-wrap">
+            <table class="matrix">
+              <thead>
+                <tr>
+                  <th>Ressource / SAÉ</th>
+                  <th>Intitulé</th>
+                  <th>Compétences RNCP</th>
+                  <th>Note</th>
+                </tr>
+              </thead>
+              <tbody id="matrixBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== PROJETS / SAÉ ===== -->
+      <section class="section" id="projets">
+        <div class="section-header">
+          <div class="section-breadcrumb"><span class="accent">04</span> · Galerie</div>
+          <h1 class="section-title">Projets &amp; SAÉ</h1>
+          <p class="section-subtitle">Les Situations d'Apprentissage et d'Évaluation (SAÉ) sont le cœur de la pédagogie BUT. Voici une vue d'ensemble des projets concrets menés depuis le S1.</p>
+        </div>
+
+        <div class="competence-filters">
+          <button class="filter-btn active" data-projfilter="all">Tous</button>
+          <button class="filter-btn" data-projfilter="reseau">Réseaux</button>
+          <button class="filter-btn" data-projfilter="cyber">Cybersécurité</button>
+          <button class="filter-btn" data-projfilter="dev">Développement</button>
+          <button class="filter-btn" data-projfilter="telecom">Télécoms</button>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid"></div>
+      </section>
+
+      <!-- ===== EXPERIENCES ===== -->
+      <section class="section" id="experiences">
+        <div class="section-header">
+          <div class="section-breadcrumb"><span class="accent">05</span> · Terrain</div>
+          <h1 class="section-title">Expériences professionnelles</h1>
+          <p class="section-subtitle">Stage, CDD et alternance — trois expériences successives au SIVOM de la Communauté du Béthunois sur les systèmes urbains connectés.</p>
+        </div>
+
+        <!-- Apprentissage -->
+        <div class="exp-card violet">
+          <div class="exp-header">
+            <div>
+              <h2 class="exp-title">Apprenti Technicien Informatique — Systèmes urbains connectés</h2>
+              <div class="exp-company">SIVOM de la Communauté du Béthunois</div>
+              <div class="exp-period">Septembre 2025 — En cours · BUT3 alternance</div>
+            </div>
+            <div class="exp-grade">19.27 / 20</div>
+          </div>
+          <p class="exp-description">
+            Apprentissage au sein du service informatique &amp; systèmes urbains connectés. Je participe à la mise en œuvre, la maintenance et la supervision des infrastructures de vidéoprotection urbaine, de la connectivité radio et fibre, et des solutions de gestion à distance.
+          </p>
+          <h3 style="font-family: var(--font-mono); font-size: 12px; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.05em; margin: 18px 0 4px;">Missions principales</h3>
+          <ul class="missions-list">
+            <li>Configuration de ponts radio (fréquence, protocole, SSID) pour la transmission entre sites urbains</li>
+            <li>Configuration de caméras IP (résolution, bit rate, IP, DNS, passerelle)</li>
+            <li>Installation de coffrets techniques (C16, switchs manageables, coffret optique, alimentation électrique)</li>
+            <li>Soudure de fibre optique</li>
+            <li>Remontée des flux caméras en mairie</li>
+            <li>Brassage et câblage réseau (RJ45, baie de brassage)</li>
+            <li>Configuration de switchs : VLAN, adressage IP, segmentation réseau</li>
+            <li>Tests de connectivité (ping, vérification des flux) et diagnostic de pannes réseau/vidéo</li>
+            <li>Maintenance des équipements de vidéoprotection &amp; accès distant aux NVR</li>
+            <li>Déploiement et configuration de solutions MDM (gestion de flotte mobile)</li>
+            <li>Installation et configuration de VPN pour accès sécurisé à distance</li>
+            <li>Configuration de passerelles pour points lumineux connectés</li>
+            <li>Déploiement de serveurs de supervision (tests de ping, disponibilité réseau)</li>
+            <li>Mise en place de scripts de détection et de remontée de pannes</li>
+            <li>Vérification des débits et de la qualité des flux vidéo</li>
+          </ul>
+          <h3 style="font-family: var(--font-mono); font-size: 12px; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.05em; margin: 18px 0 8px;">Apports professionnels</h3>
+          <p class="exp-description" style="margin: 0;">
+            Cette alternance transforme la théorie du BUT en pratique terrain : la configuration d'un switch que je gérais en TP devient un déploiement réel dans une infrastructure urbaine critique. L'intégration de la sécurité (VLAN, VPN, MDM) est centrale, ce qui consolide directement les compétences du parcours Cybersécurité. La note entreprise S5 reflète l'investissement et l'adaptation rapide au contexte opérationnel.
+          </p>
+          <div class="timeline-tags" style="margin-top: 16px;">
+            <span class="tag cyan">Réseaux</span>
+            <span class="tag cyan">Fibre optique</span>
+            <span class="tag cyan">Ponts radio</span>
+            <span class="tag violet">VPN</span>
+            <span class="tag violet">MDM</span>
+            <span class="tag green">Supervision</span>
+            <span class="tag">VLAN / Switchs</span>
+            <span class="tag">Vidéoprotection</span>
+          </div>
+        </div>
+
+        <!-- CDD -->
+        <div class="exp-card green">
+          <div class="exp-header">
+            <div>
+              <h2 class="exp-title">Agent technique polyvalent (CDD)</h2>
+              <div class="exp-company">SIVOM de la Communauté du Béthunois</div>
+              <div class="exp-period">Juin 2025 — Septembre 2025 · 4 mois</div>
+            </div>
+          </div>
+          <p class="exp-description">
+            CDD d'été à la suite du stage de fin de BUT2. Travaux techniques polyvalents, aide à la maintenance d'équipements, respect strict des consignes de sécurité. Période d'intégration qui a posé les bases de l'alternance qui a suivi.
+          </p>
+          <div class="timeline-tags" style="margin-top: 6px;">
+            <span class="tag">Maintenance</span>
+            <span class="tag">Sécurité au travail</span>
+            <span class="tag">Travail d'équipe</span>
+          </div>
+        </div>
+
+        <!-- Stage S4 -->
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <h2 class="exp-title">Technicien vidéoprotection (Stage)</h2>
+              <div class="exp-company">SIVOM de la Communauté du Béthunois — Verquigneul (Hauts-de-France)</div>
+              <div class="exp-period">Avril 2025 — Mai 2025 · 2 mois</div>
+            </div>
+            <div class="exp-grade">17.66 / 20</div>
+          </div>
+          <p class="exp-description">
+            Premier stage technique, premier contact avec un environnement de production. Maintenance d'équipements de vidéoprotection, interventions sur site, observation des process de déploiement de caméras urbaines. Détails par axe d'évaluation :
+          </p>
+          <ul class="missions-list">
+            <li>Rapport de stage : 18 / 20</li>
+            <li>Soutenance orale : 17 / 20</li>
+            <li>Note entreprise : 17.98 / 20</li>
+            <li>Maintenance d'équipements de vidéoprotection</li>
+            <li>Interventions techniques sur site (extérieur, urbain)</li>
+          </ul>
+          <p class="exp-description" style="margin-top: 14px;">
+            Ce stage a déclenché ma vocation pour les systèmes urbains connectés et m'a ouvert la porte de l'apprentissage qui a suivi. Il a aussi confirmé que je suis plus à l'aise avec la pratique terrain qu'avec la théorie pure.
+          </p>
+        </div>
+
+        <!-- Veilleur -->
+        <div class="exp-card">
+          <div class="exp-header">
+            <div>
+              <h2 class="exp-title">Veilleur de nuit</h2>
+              <div class="exp-company">CROUS de Lille</div>
+              <div class="exp-period">Avril 2024 — En cours</div>
+            </div>
+          </div>
+          <p class="exp-description">
+            Job étudiant en parallèle de la formation. Surveillance des locaux, gestion des incidents, autonomie totale sur le créneau. Cette expérience, sans rapport direct avec la technique, m'a appris la responsabilité, la gestion du calme et la prise de décision rapide — des qualités qu'on retrouve aussi en supervision SOC.
+          </p>
+          <div class="timeline-tags" style="margin-top: 6px;">
+            <span class="tag">Autonomie</span>
+            <span class="tag">Gestion d'incident</span>
+            <span class="tag">Responsabilité</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== MATIERES ===== -->
+      <section class="section" id="matieres">
+        <div class="section-header">
+          <div class="section-breadcrumb"><span class="accent">06</span> · Apprentissages</div>
+          <h1 class="section-title">Matières &amp; ressources</h1>
+          <p class="section-subtitle">Vue d'ensemble des ressources (R) du référentiel BUT R&amp;T suivies au fil des semestres, avec mes notes réelles issues des bulletins officiels.</p>
+        </div>
+
+        <div id="matieresContent"></div>
+      </section>
+
+      <!-- ===== AVENIR ===== -->
+      <section class="section" id="avenir">
+        <div class="section-header">
+          <div class="section-breadcrumb"><span class="accent">07</span> · Cap 2026</div>
+          <h1 class="section-title">Projet d'avenir</h1>
+          <p class="section-subtitle">Une vision claire : combiner la technique réseaux/cybersécurité avec les nouveaux usages liés à l'intelligence artificielle et aux systèmes connectés.</p>
+        </div>
+
+        <div class="future-grid">
+          <div class="future-card">
+            <div class="future-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <h3 class="future-title">Master orienté technique</h3>
+            <p class="future-desc">Recherche d'un Master pour septembre 2026 qui combine infrastructure réseaux, cybersécurité opérationnelle et applications IA. Les axes ciblés : sécurité des SI, supervision, cloud sécurisé, IA appliquée aux réseaux.</p>
+          </div>
+
+          <div class="future-card violet">
+            <div class="future-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4M8 16h.01M16 16h.01"/></svg>
+            </div>
+            <h3 class="future-title">Cybersécurité × IA</h3>
+            <p class="future-desc">Le croisement qui m'intéresse particulièrement : détection d'anomalies par IA, supervision intelligente des flux réseau, automatisation de la réponse à incident. Un terrain où la formation R&amp;T Cyber peut apporter une vraie valeur ajoutée.</p>
+          </div>
+
+          <div class="future-card green">
+            <div class="future-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+            </div>
+            <h3 class="future-title">Systèmes urbains &amp; IoT</h3>
+            <p class="future-desc">L'expérience SIVOM m'a montré que les villes connectées sont un terrain réel où réseaux, sécurité et IoT se rencontrent. Je veux continuer à explorer ce domaine, où la cybersécurité devient critique.</p>
+          </div>
+        </div>
+
+        <div class="progress-card" style="background: linear-gradient(135deg, var(--bg-card) 0%, rgba(167, 139, 250, 0.05) 100%);">
+          <h3>Court terme (12 mois)</h3>
+          <ul class="missions-list" style="margin-top: 8px;">
+            <li>Finaliser le BUT3 R&amp;T Cybersécurité (juin 2026)</li>
+            <li>Boucler une année d'alternance complète et professionnelle au SIVOM Béthunois</li>
+            <li>Approfondir l'autoformation cyber (labs, plateformes type TryHackMe / Root-Me, certifications)</li>
+            <li>Choisir et intégrer un Master en septembre 2026, en alternance idéalement</li>
+            <li>Renforcer l'anglais technique vers un niveau B2/C1 (déjà B1 actuellement)</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===== CONTACT ===== -->
+      <section class="section" id="contact">
+        <div class="section-header">
+          <div class="section-breadcrumb"><span class="accent">08</span> · Restons en contact</div>
+          <h1 class="section-title">Me contacter</h1>
+          <p class="section-subtitle">Pour toute opportunité de Master, de collaboration ou simplement pour échanger sur les sujets cyber, réseaux ou IA, voici comment me joindre.</p>
+        </div>
+
+        <div class="contact-grid">
+          <a class="contact-card" href="mailto:stephane.pyramlouis972@gmail.com">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value">stephane.pyramlouis972@gmail.com</div>
+            </div>
+          </a>
+
+          <a class="contact-card" href="https://www.linkedin.com/in/stéphane-pyram-louis-5a45652b5/" target="_blank" rel="noopener">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+            </div>
+            <div>
+              <div class="contact-label">LinkedIn</div>
+              <div class="contact-value">stéphane-pyram-louis</div>
+            </div>
+          </a>
+
+          <a class="contact-card" href="tel:+33615955653">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="contact-label">Téléphone</div>
+              <div class="contact-value">06 15 95 56 53</div>
+            </div>
+          </a>
+
+          <a class="contact-card" href="assets/docs/CV_Stephane_PYRAM_LOUIS.pdf" target="_blank" rel="noopener">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div>
+              <div class="contact-label">CV — Master 2026</div>
+              <div class="contact-value">Télécharger le PDF</div>
+            </div>
+          </a>
+
+          <div class="contact-card" style="cursor: default;">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="contact-label">Localisation</div>
+              <div class="contact-value">Béthune, Hauts-de-France</div>
+            </div>
+          </div>
+
+          <div class="contact-card" style="cursor: default;">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div class="contact-label">Disponibilité</div>
+              <div class="contact-value">Master · Septembre 2026</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 13px; font-family: var(--font-mono);">
+          <p>Portfolio réalisé dans le cadre de la SAÉ Portfolio · BUT3 R&amp;T Cybersécurité · IUT de Béthune · 2025-2026</p>
+          <p style="margin-top: 6px;">© 2026 Stéphane PYRAM-LOUIS — Construit avec HTML, CSS &amp; JS · hébergé sur GitHub Pages</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Modal projets -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modalClose" aria-label="Fermer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

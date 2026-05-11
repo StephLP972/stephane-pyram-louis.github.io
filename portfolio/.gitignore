@@ -1,0 +1,21 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Node (au cas où)
+node_modules/
+
+# Build outputs (rien à ignorer pour ce projet sans build)
+dist/
+build/
