@@ -1,21 +1,13 @@
 import java.util.ArrayList;
 
-// Exercise 7 - Appointment Scheduling System
-
 abstract class Appointment {
     private String id;
     private int startMinute;
     private int duration;
 
     public Appointment(String id, int startMinute, int duration) {
-        if (startMinute < 0 || startMinute >= 1440) {
-            throw new IllegalArgumentException("Start time must be between 00:00 and 23:59");
-        }
-        if (duration <= 0) {
-            throw new IllegalArgumentException("Duration must be > 0");
-        }
-        if (startMinute + duration > 1440) {
-            throw new IllegalArgumentException("Appointment cannot go past midnight");
+        if (startMinute < 0 || startMinute >= 1440 || duration <= 0 || startMinute + duration > 1440) {
+            throw new IllegalArgumentException("Invalid time or duration");
         }
         this.id = id;
         this.startMinute = startMinute;
@@ -30,10 +22,6 @@ abstract class Appointment {
         return startMinute;
     }
 
-    public int getDuration() {
-        return duration;
-    }
-
     public int getEndMinute() {
         return startMinute + duration;
     }
@@ -42,14 +30,8 @@ abstract class Appointment {
 
     public abstract String description();
 
-    // 570 -> "09:30"
-    public static String formatTime(int minutes) {
+    public static String time(int minutes) {
         return String.format("%02d:%02d", minutes / 60, minutes % 60);
-    }
-
-    // "09:30" -> 570
-    public static int toMinutes(int hours, int minutes) {
-        return hours * 60 + minutes;
     }
 }
 
@@ -61,164 +43,121 @@ class Consultation extends Appointment {
         this.room = room;
     }
 
-    @Override
     public String getRoom() {
         return room;
     }
 
-    @Override
     public String description() {
-        return "Consultation in room " + room;
+        return "Consultation room " + room;
     }
 }
 
 class Workshop extends Appointment {
     private String room;
-    private int maxCapacity;
+    private int capacity;
 
-    public Workshop(String id, int startMinute, int duration, String room, int maxCapacity) {
+    public Workshop(String id, int startMinute, int duration, String room, int capacity) {
         super(id, startMinute, duration);
-        if (maxCapacity <= 0) {
-            throw new IllegalArgumentException("Workshop capacity must be positive");
+        if (capacity <= 0) {
+            throw new IllegalArgumentException("Invalid capacity");
         }
         this.room = room;
-        this.maxCapacity = maxCapacity;
+        this.capacity = capacity;
     }
 
-    @Override
     public String getRoom() {
         return room;
     }
 
-    @Override
     public String description() {
-        return "Workshop in room " + room + " (max " + maxCapacity + " people)";
+        return "Workshop room " + room + " capacity " + capacity;
     }
 }
 
 class Scheduler {
-    private ArrayList<Appointment> appointments = new ArrayList<>();
+    private ArrayList<Appointment> list = new ArrayList<>();
 
-    public boolean addAppointment(Appointment a) {
-        for (int i = 0; i < appointments.size(); i++) {
-            Appointment other = appointments.get(i);
-            if (other.getId().equals(a.getId())) {
-                System.out.println("Rejected " + a.getId() + ": duplicate ID");
-                return false;
+    public void addAppointment(Appointment a) {
+        for (int i = 0; i < list.size(); i++) {
+            Appointment b = list.get(i);
+            if (b.getId().equals(a.getId())) {
+                System.out.println("Rejected " + a.getId() + ": duplicate id");
+                return;
             }
-            boolean sameRoom = other.getRoom().equals(a.getRoom());
-            boolean overlap = a.getStartMinute() < other.getEndMinute()
-                    && other.getStartMinute() < a.getEndMinute();
-            if (sameRoom && overlap) {
-                System.out.println("Rejected " + a.getId() + ": overlaps " + other.getId()
-                        + " in room " + a.getRoom());
-                return false;
+            if (b.getRoom().equals(a.getRoom())
+                    && a.getStartMinute() < b.getEndMinute() && b.getStartMinute() < a.getEndMinute()) {
+                System.out.println("Rejected " + a.getId() + ": overlap with " + b.getId());
+                return;
             }
         }
-        appointments.add(a);
-        System.out.println("Added " + a.getId() + " " + Appointment.formatTime(a.getStartMinute())
-                + "-" + Appointment.formatTime(a.getEndMinute()) + " room " + a.getRoom());
-        return true;
+        list.add(a);
+        System.out.println("Added " + a.getId());
     }
 
-    // sorts a copy, so the original list keeps insertion order
-    public ArrayList<Appointment> getSortedCopy() {
-        ArrayList<Appointment> copy = new ArrayList<>(appointments);
-        for (int i = 0; i < copy.size() - 1; i++) {
-            for (int j = 0; j < copy.size() - 1 - i; j++) {
+    public void printSchedule() {
+        ArrayList<Appointment> copy = new ArrayList<>(list);
+        for (int i = 0; i < copy.size(); i++) {
+            for (int j = 0; j < copy.size() - 1; j++) {
                 Appointment a = copy.get(j);
                 Appointment b = copy.get(j + 1);
-                boolean swap = a.getStartMinute() > b.getStartMinute()
-                        || (a.getStartMinute() == b.getStartMinute() && a.getId().compareTo(b.getId()) > 0);
-                if (swap) {
+                if (a.getStartMinute() > b.getStartMinute()
+                        || (a.getStartMinute() == b.getStartMinute() && a.getId().compareTo(b.getId()) > 0)) {
                     copy.set(j, b);
                     copy.set(j + 1, a);
                 }
             }
         }
-        return copy;
-    }
-
-    public void printSchedule() {
-        System.out.println("------------- SCHEDULE (chronological) -------------");
-        ArrayList<Appointment> sorted = getSortedCopy();
-        if (sorted.isEmpty()) {
-            System.out.println("No appointments.");
+        for (int i = 0; i < copy.size(); i++) {
+            Appointment a = copy.get(i);
+            System.out.println(Appointment.time(a.getStartMinute()) + "-" + Appointment.time(a.getEndMinute())
+                    + " " + a.getId() + " " + a.description());
         }
-        for (int i = 0; i < sorted.size(); i++) {
-            Appointment a = sorted.get(i);
-            System.out.println(Appointment.formatTime(a.getStartMinute()) + "-"
-                    + Appointment.formatTime(a.getEndMinute()) + "  " + a.getId() + "  " + a.description());
-        }
-        System.out.println("----------------------------------------------------");
-    }
-
-    public void printInsertionOrder() {
-        System.out.print("Insertion order: ");
-        for (int i = 0; i < appointments.size(); i++) {
-            System.out.print(appointments.get(i).getId() + " ");
-        }
-        System.out.println();
     }
 }
 
 public class AppointmentApp {
 
     public static void main(String[] args) {
-        Scheduler scheduler = new Scheduler();
-        demoExample(scheduler);
-        testDuplicateId(scheduler);
-        testInvalidTimes();
-        testChronologicalListing(scheduler);
+        Scheduler s = new Scheduler();
+        test1(s);
+        test2(s);
+        test3();
+        test4(s);
     }
 
-    static void demoExample(Scheduler scheduler) {
-        System.out.println("=== Demo: example from the exercise ===");
-        // Room A: Consultation 09:00-10:00
-        scheduler.addAppointment(new Consultation("C1", Appointment.toMinutes(9, 0), 60, "A"));
-        // Room A: Workshop 09:30-11:00 -> must be rejected (same room overlap)
-        scheduler.addAppointment(new Workshop("W1", Appointment.toMinutes(9, 30), 90, "A", 20));
-        // Room B: Workshop 09:30-11:00 -> allowed (different room)
-        scheduler.addAppointment(new Workshop("W2", Appointment.toMinutes(9, 30), 90, "B", 20));
-        // Room A: Consultation 10:00-10:30 -> allowed (touches 10:00 end, no overlap)
-        scheduler.addAppointment(new Consultation("C2", Appointment.toMinutes(10, 0), 30, "A"));
+    static void test1(Scheduler s) {
+        System.out.println("Test 1: example");
+        s.addAppointment(new Consultation("C1", 540, 60, "A"));
+        s.addAppointment(new Workshop("W1", 570, 90, "A", 20));
+        s.addAppointment(new Workshop("W2", 570, 90, "B", 20));
+        s.addAppointment(new Consultation("C2", 600, 30, "A"));
+        System.out.println();
     }
 
-    static void testDuplicateId(Scheduler scheduler) {
-        System.out.println("\n=== Test: duplicate ID ===");
-        scheduler.addAppointment(new Consultation("C1", Appointment.toMinutes(14, 0), 30, "C"));
+    static void test2(Scheduler s) {
+        System.out.println("Test 2: duplicate id");
+        s.addAppointment(new Consultation("C1", 840, 30, "C"));
+        System.out.println();
     }
 
-    static void testInvalidTimes() {
-        System.out.println("\n=== Test: invalid duration / time past midnight ===");
-        tryCreate("X1", Appointment.toMinutes(10, 0), 0, "A");      // duration 0
-        tryCreate("X2", Appointment.toMinutes(10, 0), -15, "A");    // negative duration
-        tryCreate("X3", Appointment.toMinutes(23, 30), 60, "A");    // ends after midnight
-        tryCreate("X4", 1440, 10, "A");                             // start = 24:00
+    static void test3() {
+        System.out.println("Test 3: invalid duration and past midnight");
         try {
-            new Workshop("X5", Appointment.toMinutes(8, 0), 60, "B", 0);
+            new Consultation("X1", 600, 0, "A");
         } catch (IllegalArgumentException e) {
-            System.out.println("Rejected X5: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
-        // edge case that is valid: ends exactly at midnight
-        tryCreate("X6", Appointment.toMinutes(23, 0), 60, "A");
-    }
-
-    static void tryCreate(String id, int start, int duration, String room) {
         try {
-            Consultation c = new Consultation(id, start, duration, room);
-            System.out.println("Created " + id + ": " + Appointment.formatTime(c.getStartMinute())
-                    + "-" + Appointment.formatTime(c.getEndMinute()));
+            new Consultation("X2", 1410, 60, "A");
         } catch (IllegalArgumentException e) {
-            System.out.println("Rejected " + id + ": " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
+        System.out.println();
     }
 
-    static void testChronologicalListing(Scheduler scheduler) {
-        System.out.println("\n=== Test: chronological listing ===");
-        scheduler.addAppointment(new Consultation("C0", Appointment.toMinutes(8, 0), 45, "C"));
-        scheduler.addAppointment(new Consultation("B9", Appointment.toMinutes(9, 30), 30, "C")); // same start as W2 -> tie by ID
-        scheduler.printInsertionOrder();
-        scheduler.printSchedule();
+    static void test4(Scheduler s) {
+        System.out.println("Test 4: schedule in order");
+        s.addAppointment(new Consultation("C3", 480, 45, "C"));
+        s.printSchedule();
     }
 }

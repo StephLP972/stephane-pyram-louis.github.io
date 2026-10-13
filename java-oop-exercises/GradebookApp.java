@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-// Exercise 3 - School Gradebook
-
 abstract class Person {
     private String name;
 
@@ -28,65 +26,42 @@ class Student extends Person {
 }
 
 class Course {
-    // -1 means "no score yet" (missing assessment)
-    public static final int MISSING = -1;
-    public static final int MAX_STUDENTS = 30;
-
     private ArrayList<Student> students = new ArrayList<>();
-    private int[][] scores = new int[MAX_STUDENTS][3];
+    private int[][] scores = new int[30][3];
     private double[] weights = {0.20, 0.30, 0.50};
 
-    public boolean addStudent(Student s) {
-        if (students.size() >= MAX_STUDENTS) {
-            System.out.println("Course is full, cannot add " + s.getStudentId());
-            return false;
-        }
+    // a score of -1 means the assessment is missing
+    public void addStudent(Student s) {
         int row = students.size();
         students.add(s);
         for (int i = 0; i < 3; i++) {
-            scores[row][i] = MISSING;
+            scores[row][i] = -1;
         }
-        return true;
     }
 
-    private int findIndex(String studentId) {
+    public void setScore(String studentId, int assessment, int score) {
+        if (score < 0 || score > 100) {
+            System.out.println("Invalid score: " + score);
+            return;
+        }
         for (int i = 0; i < students.size(); i++) {
             if (students.get(i).getStudentId().equals(studentId)) {
-                return i;
+                scores[i][assessment - 1] = score;
+                return;
             }
         }
-        return -1;
+        System.out.println("Student not found: " + studentId);
     }
 
-    // assessment is 1, 2 or 3
-    public boolean setScore(String studentId, int assessment, int score) {
-        int index = findIndex(studentId);
-        if (index == -1) {
-            System.out.println("Rejected: unknown student " + studentId);
-            return false;
-        }
-        if (assessment < 1 || assessment > 3) {
-            System.out.println("Rejected: assessment must be 1, 2 or 3");
-            return false;
-        }
-        if (score < 0 || score > 100) {
-            System.out.println("Rejected: score " + score + " for " + studentId + " (must be 0-100)");
-            return false;
-        }
-        scores[index][assessment - 1] = score;
-        return true;
-    }
-
-    public boolean setAllScores(String studentId, int s1, int s2, int s3) {
-        boolean ok1 = setScore(studentId, 1, s1);
-        boolean ok2 = setScore(studentId, 2, s2);
-        boolean ok3 = setScore(studentId, 3, s3);
-        return ok1 && ok2 && ok3;
+    public void setScores(String studentId, int s1, int s2, int s3) {
+        setScore(studentId, 1, s1);
+        setScore(studentId, 2, s2);
+        setScore(studentId, 3, s3);
     }
 
     public boolean isComplete(int index) {
         for (int i = 0; i < 3; i++) {
-            if (scores[index][i] == MISSING) {
+            if (scores[index][i] == -1) {
                 return false;
             }
         }
@@ -101,118 +76,114 @@ class Course {
         return total;
     }
 
-    public static String letterGrade(double average) {
-        if (average >= 90) return "A";
-        if (average >= 80) return "B";
-        if (average >= 70) return "C";
-        if (average >= 60) return "D";
-        return "F";
+    public String letterGrade(double avg) {
+        if (avg >= 90) {
+            return "A";
+        } else if (avg >= 80) {
+            return "B";
+        } else if (avg >= 70) {
+            return "C";
+        } else if (avg >= 60) {
+            return "D";
+        } else {
+            return "F";
+        }
     }
 
-    // returns null if no complete student
-    public Student findTopStudent() {
+    public Student getTopStudent() {
         Student best = null;
-        double bestAvg = -1;
+        double bestAvg = 0;
         for (int i = 0; i < students.size(); i++) {
-            if (!isComplete(i)) {
-                continue;
-            }
-            double avg = weightedAverage(i);
-            Student s = students.get(i);
-            if (best == null || avg > bestAvg
-                    || (avg == bestAvg && s.getStudentId().compareTo(best.getStudentId()) < 0)) {
-                best = s;
-                bestAvg = avg;
+            if (isComplete(i)) {
+                double avg = weightedAverage(i);
+                Student s = students.get(i);
+                if (best == null || avg > bestAvg) {
+                    best = s;
+                    bestAvg = avg;
+                } else if (avg == bestAvg && s.getStudentId().compareTo(best.getStudentId()) < 0) {
+                    best = s;
+                }
             }
         }
         return best;
     }
 
     public void printReport() {
-        System.out.println("---------------- GRADE REPORT ----------------");
-        if (students.isEmpty()) {
-            System.out.println("No students in this course.");
+        if (students.size() == 0) {
+            System.out.println("No students");
+            return;
         }
         for (int i = 0; i < students.size(); i++) {
             Student s = students.get(i);
-            System.out.print(s.getStudentId() + " " + s.getName() + " scores: ");
-            for (int j = 0; j < 3; j++) {
-                if (scores[i][j] == MISSING) {
-                    System.out.print("-- ");
-                } else {
-                    System.out.print(scores[i][j] + " ");
-                }
-            }
             if (isComplete(i)) {
                 double avg = weightedAverage(i);
-                System.out.printf("| average = %.2f | grade = %s%n", avg, letterGrade(avg));
+                System.out.println(s.getStudentId() + " " + s.getName() + " average: " + String.format("%.2f", avg) + " grade: " + letterGrade(avg));
             } else {
-                System.out.println("| INCOMPLETE (no final grade)");
+                System.out.println(s.getStudentId() + " " + s.getName() + " incomplete");
             }
         }
-        Student top = findTopStudent();
+        Student top = getTopStudent();
         if (top == null) {
-            System.out.println("Top student: none (no complete record)");
+            System.out.println("Top student: none");
         } else {
             System.out.println("Top student: " + top.getStudentId() + " " + top.getName());
         }
-        System.out.println("----------------------------------------------");
     }
 }
 
 public class GradebookApp {
 
     public static void main(String[] args) {
-        demoExample();
-        testBoundaries();
-        testTieBreak();
-        testEmptyAndIncomplete();
+        test1();
+        test2();
+        test3();
+        test4();
     }
 
-    static void demoExample() {
-        System.out.println("=== Demo: example from the exercise ===");
-        Course course = new Course();
-        course.addStudent(new Student("Alice", "S001"));
-        course.addStudent(new Student("Bob", "S002"));
-        course.addStudent(new Student("Chloe", "S003"));
-        course.setAllScores("S001", 90, 80, 100);
-        course.setAllScores("S002", 80, 90, 100);
-        course.setAllScores("S003", 60, 70, 80);
-        course.printReport();
+    static void test1() {
+        System.out.println("Test 1: example");
+        Course c = new Course();
+        c.addStudent(new Student("Alice", "S1"));
+        c.addStudent(new Student("Bob", "S2"));
+        c.addStudent(new Student("Chloe", "S3"));
+        c.setScores("S1", 90, 80, 100);
+        c.setScores("S2", 80, 90, 100);
+        c.setScores("S3", 60, 70, 80);
+        c.printReport();
+        System.out.println();
     }
 
-    static void testBoundaries() {
-        System.out.println("\n=== Test: scores 0 and 100 valid, -1 and 101 invalid ===");
-        Course course = new Course();
-        course.addStudent(new Student("David", "S010"));
-        course.addStudent(new Student("Emma", "S011"));
-        course.setAllScores("S010", 0, 0, 0);
-        course.setAllScores("S011", 100, 100, 100);
-        course.setScore("S010", 1, -1);
-        course.setScore("S011", 2, 101);
-        course.printReport();
+    static void test2() {
+        System.out.println("Test 2: scores 0, 100, -1, 101");
+        Course c = new Course();
+        c.addStudent(new Student("David", "S4"));
+        c.addStudent(new Student("Emma", "S5"));
+        c.setScores("S4", 0, 0, 0);
+        c.setScores("S5", 100, 100, 100);
+        c.setScore("S4", 1, -1);
+        c.setScore("S5", 1, 101);
+        c.printReport();
+        System.out.println();
     }
 
-    static void testTieBreak() {
-        System.out.println("\n=== Test: equal averages -> smallest student ID wins ===");
-        Course course = new Course();
-        course.addStudent(new Student("Zoe", "S200"));
-        course.addStudent(new Student("Yann", "S105"));
-        course.setAllScores("S200", 85, 85, 85);
-        course.setAllScores("S105", 85, 85, 85);
-        course.printReport();
+    static void test3() {
+        System.out.println("Test 3: same average");
+        Course c = new Course();
+        c.addStudent(new Student("Zoe", "S9"));
+        c.addStudent(new Student("Yann", "S7"));
+        c.setScores("S9", 85, 85, 85);
+        c.setScores("S7", 85, 85, 85);
+        c.printReport();
+        System.out.println();
     }
 
-    static void testEmptyAndIncomplete() {
-        System.out.println("\n=== Test: empty course ===");
+    static void test4() {
+        System.out.println("Test 4: empty and incomplete");
         Course empty = new Course();
         empty.printReport();
-
-        System.out.println("\n=== Test: incomplete record ===");
-        Course course = new Course();
-        course.addStudent(new Student("Hugo", "S300"));
-        course.setScore("S300", 1, 75);
-        course.setScore("S300", 2, 88);
-        course.printReport();
+        Course c = new Course();
+        c.addStudent(new Student("Hugo", "S8"));
+        c.setScore("S8", 1, 75);
+        c.printReport();
     }
 }
